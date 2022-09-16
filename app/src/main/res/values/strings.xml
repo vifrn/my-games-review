@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyGamesReviews</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">My Games Reviews</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_bar_hint">Search a game...</string>
 </resources>
