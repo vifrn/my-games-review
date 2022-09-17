@@ -15,6 +15,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+        buildConfigField "String", "IGDB_CLIENT_ID", properties.getProperty("igdbClientId")
+        buildConfigField "String", "IGDB_CLIENT_SECRET", properties.getProperty("igdbClientSecret")
     }
 
     buildTypes {
@@ -58,4 +64,14 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    implementation("com.squareup.moshi:moshi:$moshi_version")
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 }
