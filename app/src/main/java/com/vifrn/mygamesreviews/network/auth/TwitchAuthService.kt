@@ -11,8 +11,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-//REF: https://medium.com/android-news/token-authorization-with-retrofit-android-oauth-2-0-747995c79720
-
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

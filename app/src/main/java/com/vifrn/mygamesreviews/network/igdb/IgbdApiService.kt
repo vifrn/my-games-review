@@ -1,14 +1,22 @@
-package com.vifrn.mygamesreviews.network
+package com.vifrn.mygamesreviews.network.igdb
 
 import com.vifrn.mygamesreviews.BuildConfig
+import com.vifrn.mygamesreviews.network.NetworkConstants
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 
+private val interceptor = HttpLoggingInterceptor()
+    .setLevel(HttpLoggingInterceptor.Level.BODY)
+private val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
     .baseUrl(NetworkConstants.API_URL)
+    .client(client)
     .build()
 
 object IgdbApi {

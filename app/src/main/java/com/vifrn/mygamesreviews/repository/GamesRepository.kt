@@ -1,7 +1,9 @@
 package com.vifrn.mygamesreviews.repository
 
 import android.util.Log
-import com.vifrn.mygamesreviews.network.IgdbApi
+import com.vifrn.mygamesreviews.network.igdb.IgdbApi
+import com.vifrn.mygamesreviews.network.parseGamesJsonArray
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +26,8 @@ class GamesRepository {
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.isSuccessful) {
-                    Log.d("NW test", "Response: ${response.body()}")
+                    val gameList = parseGamesJsonArray(JSONArray(response.body()))
+                    Log.d("NW test", "Success - Game List: $gameList")
                 } else {
                     try {
                         val jObjError = JSONObject(response.errorBody()?.toString())
