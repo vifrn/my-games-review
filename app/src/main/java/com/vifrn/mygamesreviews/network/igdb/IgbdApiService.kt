@@ -32,5 +32,5 @@ interface IgdbApiService {
     )
     fun getGames(
         @Header("Authorization") token : String,
-        @Body body : String = NetworkConstants.FIELDS_FILTER) : Call<String>
+        @Body body : String = NetworkConstants.FIELDS_FILTER + NetworkConstants.LIMIT_50) : Call<String>
 }

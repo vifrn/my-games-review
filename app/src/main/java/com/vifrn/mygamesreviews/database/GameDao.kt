@@ -20,7 +20,7 @@ interface GameDao {
     @Query("SELECT * FROM ${Constants.GAME_TABLE_NAME} WHERE id = :id")
     fun getGameById (id : Int) : LiveData<Game>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertGames (vararg game: Game)
 
 }

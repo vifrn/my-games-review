@@ -2,4 +2,7 @@
 <resources>
     <dimen name="search_bar_size">50dp</dimen>
     <dimen name="thumb_image_size">50dp</dimen>
+    <dimen name="list_item_height">125dp</dimen>
+
+    <dimen name="list_item_image_width">109dp</dimen>
 </resources>

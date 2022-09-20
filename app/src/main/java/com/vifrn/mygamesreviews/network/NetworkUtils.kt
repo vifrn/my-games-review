@@ -18,7 +18,7 @@ fun parseGamesJsonArray(jsonResult: JSONArray): Array<Game> {
             id,
             name,
             summary,
-            makeImageUrlForSize(url, ImageSizes.THUMB),
+            makeImageUrlForSize(url, ImageSizes.LOGO_MED),
             makeImageUrlForSize(url, ImageSizes.COVER_BIG),
             null, /* user rating */
             null /* user review */)

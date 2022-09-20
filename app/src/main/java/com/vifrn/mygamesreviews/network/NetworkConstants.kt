@@ -11,4 +11,5 @@ object NetworkConstants {
 
     const val FIELDS_FILTER = "fields id, name, summary, cover.*;"
     const val LIMIT_10 = "limit 10;"
+    const val LIMIT_50 = "limit 50;"
 }
