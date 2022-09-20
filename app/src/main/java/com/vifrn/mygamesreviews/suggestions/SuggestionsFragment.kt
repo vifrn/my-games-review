@@ -31,8 +31,8 @@ class SuggestionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.response.observe(viewLifecycleOwner) { result ->
-            Log.d("NW Test", "The result is $result")
+        viewModel.suggestions.observe(viewLifecycleOwner) { games ->
+            Log.d("TEST", "Game list: $games")
         }
 
         viewModel.newToken.observe(viewLifecycleOwner) { status ->

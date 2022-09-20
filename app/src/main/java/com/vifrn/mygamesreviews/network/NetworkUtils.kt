@@ -3,7 +3,7 @@ package com.vifrn.mygamesreviews.network
 import com.vifrn.mygamesreviews.model.Game
 import org.json.JSONArray
 
-fun parseGamesJsonArray(jsonResult: JSONArray): ArrayList<Game> {
+fun parseGamesJsonArray(jsonResult: JSONArray): Array<Game> {
     val gameList = ArrayList<Game>()
 
     for (i in 0 until jsonResult.length()) {
@@ -25,7 +25,7 @@ fun parseGamesJsonArray(jsonResult: JSONArray): ArrayList<Game> {
 
         gameList.add(game)
     }
-    return gameList
+    return gameList.toTypedArray()
 }
 
 fun makeImageUrlForSize (url : String?, size : ImageSizes) : String {
