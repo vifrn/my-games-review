@@ -31,8 +31,15 @@ class SuggestionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = GameListAdapter(GameClickListener { game ->
+            viewModel.onGameClicked(game)
+        })
+        binding.suggestionsList.adapter = adapter
+
         viewModel.suggestions.observe(viewLifecycleOwner) { games ->
-            Log.d("TEST", "Game list: $games")
+            games?.let {
+                adapter.submitList(games)
+            }
         }
 
         viewModel.newToken.observe(viewLifecycleOwner) { status ->

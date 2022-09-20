@@ -3,6 +3,7 @@ package com.vifrn.mygamesreviews.suggestions
 import android.app.Application
 import androidx.lifecycle.*
 import com.vifrn.mygamesreviews.database.getDatabase
+import com.vifrn.mygamesreviews.model.Game
 import com.vifrn.mygamesreviews.network.SessionManager
 import com.vifrn.mygamesreviews.repository.GamesRepository
 import kotlinx.coroutines.launch
@@ -37,5 +38,9 @@ class SuggestionsViewModel(application: Application) : AndroidViewModel(applicat
                 repository.refreshSuggestions(it)
             }
         }
+    }
+
+    fun onGameClicked (game : Game) {
+        //Do nothing yet
     }
 }
