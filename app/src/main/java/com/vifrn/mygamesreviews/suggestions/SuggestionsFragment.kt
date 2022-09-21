@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.vifrn.mygamesreviews.R
 import com.vifrn.mygamesreviews.databinding.FragmentSuggestionsBinding
 import com.vifrn.mygamesreviews.network.TokenStatus
@@ -32,7 +33,7 @@ class SuggestionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = GameListAdapter(GameClickListener { game ->
-            viewModel.onGameClicked(game)
+            findNavController().navigate(SuggestionsFragmentDirections.actionSuggestionsFragmentToDetailsFragment(game))
         })
         binding.suggestionsList.adapter = adapter
 

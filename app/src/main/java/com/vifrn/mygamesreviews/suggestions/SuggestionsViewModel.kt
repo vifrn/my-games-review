@@ -39,8 +39,4 @@ class SuggestionsViewModel(application: Application) : AndroidViewModel(applicat
             }
         }
     }
-
-    fun onGameClicked (game : Game) {
-        //Do nothing yet
-    }
 }

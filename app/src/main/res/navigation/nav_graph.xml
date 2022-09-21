@@ -8,43 +8,37 @@
     <fragment
         android:id="@+id/suggestionsFragment"
         android:name="com.vifrn.mygamesreviews.suggestions.SuggestionsFragment"
-        android:label="fragment_suggestions"
-        tools:layout="@layout/fragment_suggestions" >
-        <action
-            android:id="@+id/action_suggestionsFragment_to_searchResultsListFragment"
-            app:destination="@id/searchResultsListFragment" />
+        android:label="@string/suggestions_fragment_label"
+        tools:layout="@layout/fragment_suggestions">
         <action
             android:id="@+id/action_suggestionsFragment_to_myReviewsListFragment"
-            app:destination="@id/myReviewsListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchResultsListFragment"
-        android:name="com.vifrn.mygamesreviews.search.SearchResultsListFragment"
-        android:label="fragment_search_results_list"
-        tools:layout="@layout/fragment_search_results_list" >
+            app:destination="@id/myReviews" />
         <action
-            android:id="@+id/action_searchResultsListFragment_to_detailsFragment"
+            android:id="@+id/action_suggestionsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.vifrn.mygamesreviews.details.DetailsFragment"
-        android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        android:label="@string/details_fragment_label"
+        tools:layout="@layout/fragment_details">
         <action
             android:id="@+id/action_detailsFragment_to_reviewFragment"
             app:destination="@id/reviewFragment" />
+        <argument
+            android:name="game"
+            app:argType="com.vifrn.mygamesreviews.model.Game" />
     </fragment>
     <fragment
         android:id="@+id/reviewFragment"
         android:name="com.vifrn.mygamesreviews.review.ReviewFragment"
-        android:label="fragment_review"
+        android:label="@string/review_fragment_label"
         tools:layout="@layout/fragment_review" />
     <fragment
-        android:id="@+id/myReviewsListFragment"
+        android:id="@+id/myReviews"
         android:name="com.vifrn.mygamesreviews.list.GameListFragment"
-        android:label="fragment_my_reviews_list"
-        tools:layout="@layout/fragment_game_list" >
+        android:label="@string/my_reviews_label"
+        tools:layout="@layout/fragment_game_list">
         <action
             android:id="@+id/action_myReviewsListFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
