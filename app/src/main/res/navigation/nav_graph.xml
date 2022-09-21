@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/myReviews"
-        android:name="com.vifrn.mygamesreviews.list.GameListFragment"
+        android:name="com.vifrn.mygamesreviews.review.list.ReviewsListFragment"
         android:label="@string/my_reviews_label"
         tools:layout="@layout/fragment_game_list">
         <action

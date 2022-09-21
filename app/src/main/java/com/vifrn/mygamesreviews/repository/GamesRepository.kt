@@ -16,6 +16,7 @@ import retrofit2.await
 class GamesRepository (private val database : GameDatabase) {
 
     val suggestions = database.gameDao.getCachedGames()
+    val myReviews = database.gameDao.getReviewedGames()
 
     suspend fun refreshSuggestions (token : String) {
         withContext(Dispatchers.IO) {
