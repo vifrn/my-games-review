@@ -5,4 +5,5 @@
     <dimen name="list_item_height">125dp</dimen>
 
     <dimen name="list_item_image_width">109dp</dimen>
+    <dimen name="details_cover_size">250dp</dimen>
 </resources>

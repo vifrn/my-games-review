@@ -1,10 +1,11 @@
 package com.vifrn.mygamesreviews
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 
-@BindingAdapter("thumb")
+@BindingAdapter("imageSrc")
 fun bindGameImage(imageView: ImageView, url : String?) {
     if(!url.isNullOrEmpty()) {
         Picasso.get()
@@ -13,5 +14,13 @@ fun bindGameImage(imageView: ImageView, url : String?) {
             .into(imageView)
     } else {
         imageView.setImageResource(R.drawable.placeholder)
+    }
+}
+
+@BindingAdapter("rating")
+fun bindGameRating(textView: TextView, rating : Int?) {
+    textView.text = when (rating) {
+        null -> "0"
+        else -> rating.toString()
     }
 }

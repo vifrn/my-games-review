@@ -10,4 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#EEEEEE</color>
     <color name="dark_gray">#999999</color>
+    <color name="yellow_star">#FF9900</color>
 </resources>

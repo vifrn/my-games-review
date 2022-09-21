@@ -33,7 +33,11 @@
         android:id="@+id/reviewFragment"
         android:name="com.vifrn.mygamesreviews.review.ReviewFragment"
         android:label="@string/review_fragment_label"
-        tools:layout="@layout/fragment_review" />
+        tools:layout="@layout/fragment_review" >
+        <argument
+            android:name="game"
+            app:argType="com.vifrn.mygamesreviews.model.Game" />
+    </fragment>
     <fragment
         android:id="@+id/myReviews"
         android:name="com.vifrn.mygamesreviews.list.GameListFragment"

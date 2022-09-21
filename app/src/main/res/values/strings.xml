@@ -9,4 +9,9 @@
     <string name="my_reviews_label">My reviews</string>
     <string name="suggestions_fragment_label">Home</string>
     <string name="review_fragment_label">Add a review</string>
+    <string name="details_my_rating_label">My rating:</string>
+    <string name="details_my_review_label">My review:</string>
+    <string name="details_summary_label">Summary:</string>
+    <string name="detail_name_label">Name:</string>
+    <string name="details_button_review_label">Write your review</string>
 </resources>
