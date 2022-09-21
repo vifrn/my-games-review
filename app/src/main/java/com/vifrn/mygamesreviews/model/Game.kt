@@ -14,6 +14,6 @@ data class Game (
     val summary : String?,
     val smallImageUrl : String?,
     val bigImageUrl : String?,
-    val myRating : Int?,
-    val myReview : String?
+    var myRating : Float?,
+    var myReview : String?
 ) : Parcelable

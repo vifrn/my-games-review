@@ -9,9 +9,15 @@
     <string name="my_reviews_label">My reviews</string>
     <string name="suggestions_fragment_label">Home</string>
     <string name="review_fragment_label">Add a review</string>
+
     <string name="details_my_rating_label">My rating:</string>
     <string name="details_my_review_label">My review:</string>
     <string name="details_summary_label">Summary:</string>
-    <string name="detail_name_label">Name:</string>
+    <string name="details_name_label">Name:</string>
     <string name="details_button_review_label">Write your review</string>
+
+    <string name="review_my_rating_label">My rating:</string>
+    <string name="review_add_rating_button_label">Add rating</string>
+    <string name="review_save_button_label">Save</string>
+    <string name="review_type_your_review_hint">Type your review…</string>
 </resources>

@@ -18,9 +18,9 @@ fun bindGameImage(imageView: ImageView, url : String?) {
 }
 
 @BindingAdapter("rating")
-fun bindGameRating(textView: TextView, rating : Int?) {
+fun bindGameRating(textView: TextView, rating : Float?) {
     textView.text = when (rating) {
-        null -> "0"
+        null -> "0.0"
         else -> rating.toString()
     }
 }
