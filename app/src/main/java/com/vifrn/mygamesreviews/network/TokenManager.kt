@@ -15,9 +15,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Session manager to save and fetch data from SharedPreferences
+ * Token manager to save and fetch data from SharedPreferences
  */
-class SessionManager (context: Context) {
+class TokenManager (context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
     private val dateFormat = SimpleDateFormat(DATE_PATTERN)
 

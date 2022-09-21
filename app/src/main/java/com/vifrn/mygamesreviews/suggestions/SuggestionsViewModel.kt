@@ -3,24 +3,23 @@ package com.vifrn.mygamesreviews.suggestions
 import android.app.Application
 import androidx.lifecycle.*
 import com.vifrn.mygamesreviews.database.getDatabase
-import com.vifrn.mygamesreviews.model.Game
-import com.vifrn.mygamesreviews.network.SessionManager
+import com.vifrn.mygamesreviews.network.TokenManager
 import com.vifrn.mygamesreviews.repository.GamesRepository
 import kotlinx.coroutines.launch
 
 class SuggestionsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val sessionManager = SessionManager(application)
+    private val tokenManager = TokenManager(application)
     private val repository = GamesRepository(getDatabase(application))
 
     val suggestions = repository.suggestions
 
-    val newToken = sessionManager.newTokenReady
+    val newToken = tokenManager.newTokenReady
 
 
     init {
-        if(!sessionManager.hasValidToken()) {
-            sessionManager.getNewToken()
+        if(!tokenManager.hasValidToken()) {
+            tokenManager.getNewToken()
         } else {
             getSuggestions()
         }
@@ -28,12 +27,12 @@ class SuggestionsViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun clearTokenStatus () {
-        sessionManager.clearTokenStatus()
+        tokenManager.clearTokenStatus()
     }
 
     fun getSuggestions () {
         viewModelScope.launch {
-            val token = sessionManager.fetchAuthToken()
+            val token = tokenManager.fetchAuthToken()
             token?.let {
                 repository.refreshSuggestions(it)
             }
