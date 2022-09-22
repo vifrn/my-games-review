@@ -8,6 +8,11 @@
         <variable
             name="game"
             type="com.vifrn.mygamesreviews.model.Game" />
+
+        <variable
+            name="viewModel"
+            type="com.vifrn.mygamesreviews.review.ReviewViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,6 +90,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/review_save_button_label"
+            android:onClick="@{() -> viewModel.saveReview(game)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

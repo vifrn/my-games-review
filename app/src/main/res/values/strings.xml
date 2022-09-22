@@ -20,4 +20,6 @@
     <string name="review_add_rating_button_label">Add rating</string>
     <string name="review_save_button_label">Save</string>
     <string name="review_type_your_review_hint">Type your review…</string>
+
+    <string name="error_missing_review_fields">Please write your review and add a rating before you save</string>
 </resources>

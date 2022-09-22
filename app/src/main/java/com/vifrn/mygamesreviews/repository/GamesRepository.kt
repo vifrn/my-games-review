@@ -2,6 +2,7 @@ package com.vifrn.mygamesreviews.repository
 
 import android.util.Log
 import com.vifrn.mygamesreviews.database.GameDatabase
+import com.vifrn.mygamesreviews.model.Game
 import com.vifrn.mygamesreviews.network.igdb.IgdbApi
 import com.vifrn.mygamesreviews.network.parseGamesJsonArray
 import kotlinx.coroutines.Dispatchers
@@ -28,9 +29,23 @@ class GamesRepository (private val database : GameDatabase) {
                 )
                 database.gameDao.insertGames(*games)
             } catch (e : Exception) {
-                Log.e("Failure", "Something went wrong: " + e.message)
+                logError(e)
             }
         }
+    }
+
+    suspend fun updateGame (game : Game) {
+        withContext(Dispatchers.IO) {
+            try {
+                database.gameDao.updateGame(game)
+            } catch (e : Exception) {
+                logError(e)
+            }
+        }
+    }
+
+    private fun logError (e : Exception) {
+        Log.e("Failure", "Something went wrong: " + e.message)
     }
 
 

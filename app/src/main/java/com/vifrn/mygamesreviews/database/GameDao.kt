@@ -1,10 +1,7 @@
 package com.vifrn.mygamesreviews.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.vifrn.mygamesreviews.Constants
 import com.vifrn.mygamesreviews.model.Game
 
@@ -22,5 +19,8 @@ interface GameDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertGames (vararg game: Game)
+
+    @Update
+    fun updateGame (game : Game)
 
 }
