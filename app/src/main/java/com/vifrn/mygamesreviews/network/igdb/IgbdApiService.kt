@@ -33,4 +33,12 @@ interface IgdbApiService {
     fun getGames(
         @Header("Authorization") token : String,
         @Body body : String = NetworkConstants.FIELDS_FILTER + NetworkConstants.LIMIT_50) : Call<String>
+
+    @POST(NetworkConstants.GAMES_ENDPOINT)
+    @Headers(
+        "Client-ID: ${BuildConfig.IGDB_CLIENT_ID}"
+    )
+    fun searchGame(
+        @Header("Authorization") token : String,
+        @Body name : String) : Call<String>
 }

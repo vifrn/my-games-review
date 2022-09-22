@@ -13,9 +13,11 @@ class SuggestionsViewModel(application: Application) : AndroidViewModel(applicat
     private val repository = GamesRepository(getDatabase(application))
 
     val suggestions = repository.suggestions
+    val searchedGames = repository.searchedGames
 
     val newToken = tokenManager.newTokenReady
 
+    var showSearchResults = false
 
     init {
         if(!tokenManager.hasValidToken()) {
@@ -37,5 +39,19 @@ class SuggestionsViewModel(application: Application) : AndroidViewModel(applicat
                 repository.refreshSuggestions(it)
             }
         }
+    }
+
+    fun searchGame (name : String) {
+        viewModelScope.launch {
+            showSearchResults = true
+            val token = tokenManager.fetchAuthToken()
+            token?.let {
+                repository.searchGame(name, token)
+            }
+        }
+    }
+
+    fun searchCancelled () {
+        showSearchResults = false
     }
 }

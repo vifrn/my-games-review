@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vifrn.mygamesreviews.R
@@ -19,6 +17,10 @@ class SuggestionsFragment : Fragment() {
 
     lateinit var binding : FragmentSuggestionsBinding
     lateinit var viewModel : SuggestionsViewModel
+
+    companion object {
+        private const val TAG = "SuggestionsFragment"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +40,18 @@ class SuggestionsFragment : Fragment() {
         binding.suggestionsList.adapter = adapter
 
         viewModel.suggestions.observe(viewLifecycleOwner) { games ->
-            games?.let {
-                adapter.submitList(games)
+            if(!viewModel.showSearchResults) {
+                games?.let {
+                    adapter.submitList(games)
+                }
+            }
+        }
+
+        viewModel.searchedGames.observe(viewLifecycleOwner) { games ->
+            if(viewModel.showSearchResults) {
+                games?.let {
+                    adapter.submitList(games)
+                }
             }
         }
 
@@ -53,9 +65,40 @@ class SuggestionsFragment : Fragment() {
                     //Ignore
                 }
                 else -> {
-                    //Error
+                    Log.e(TAG, "Error when fetching a new token")
                 }
             }
         }
+
+        binding.searchButton.setOnClickListener {
+            if(!viewModel.showSearchResults) {
+                val inputName = binding.searchBar.text.toString()
+                if(!inputName.isNullOrEmpty()) {
+                    viewModel.searchGame(inputName)
+                    updateSearchButton()
+                }
+            } else {
+                viewModel.searchCancelled()
+                binding.searchBar.setText("")
+                adapter.submitList(viewModel.suggestions.value)
+                updateSearchButton()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateSearchButton()
+    }
+
+    fun updateSearchButton () {
+        if(viewModel.showSearchResults) {
+            binding.searchButton.setBackgroundColor(requireContext().getColor(R.color.red_search_cancel))
+            binding.searchButton.setImageResource(R.drawable.ic_close)
+        } else {
+            binding.searchButton.setBackgroundColor(requireContext().getColor(R.color.dark_gray))
+            binding.searchButton.setImageResource(R.drawable.ic_search)
+        }
+
     }
 }

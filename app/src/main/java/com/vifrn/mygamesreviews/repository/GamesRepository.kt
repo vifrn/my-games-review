@@ -1,8 +1,11 @@
 package com.vifrn.mygamesreviews.repository
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.vifrn.mygamesreviews.database.GameDatabase
 import com.vifrn.mygamesreviews.model.Game
+import com.vifrn.mygamesreviews.network.NetworkConstants
 import com.vifrn.mygamesreviews.network.igdb.IgdbApi
 import com.vifrn.mygamesreviews.network.parseGamesJsonArray
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +22,11 @@ class GamesRepository (private val database : GameDatabase) {
     val suggestions = database.gameDao.getCachedGames()
     val myReviews = database.gameDao.getReviewedGames()
 
+    private val foundGames = MutableLiveData<List<Int>>()
+    val searchedGames = Transformations.switchMap(foundGames) {
+        database.gameDao.getGamesByIds(it)
+    }
+
     suspend fun refreshSuggestions (token : String) {
         withContext(Dispatchers.IO) {
             try {
@@ -28,6 +36,27 @@ class GamesRepository (private val database : GameDatabase) {
                     )
                 )
                 database.gameDao.insertGames(*games)
+            } catch (e : Exception) {
+                logError(e)
+            }
+        }
+    }
+
+    suspend fun searchGame (name : String, token : String) {
+        withContext(Dispatchers.IO) {
+            try {
+                val games = parseGamesJsonArray(
+                    JSONArray(
+                        IgdbApi.retrofitService.searchGame(token, "search \"$name\"; ${NetworkConstants.FIELDS_FILTER} ${NetworkConstants.LIMIT_10}").await()
+                    )
+                )
+                database.gameDao.insertGames(*games)
+
+                val ids = mutableListOf<Int>()
+                for (game in games) {
+                    ids.add(game.id)
+                }
+                foundGames.postValue(ids)
             } catch (e : Exception) {
                 logError(e)
             }
