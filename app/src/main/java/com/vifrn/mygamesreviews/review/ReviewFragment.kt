@@ -1,6 +1,7 @@
 package com.vifrn.mygamesreviews.review
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ class ReviewFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_review, container, false)
         viewModel = ViewModelProvider(this).get(ReviewViewModel::class.java)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val args = ReviewFragmentArgs.fromBundle(requireArguments())
         binding.game = args.game
@@ -36,8 +38,7 @@ class ReviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.addRatingButton.setOnClickListener { binding.game?.myRating = 4.2f }
-
+        viewModel.setBaseInfo(binding.game!!)
         viewModel.shouldDisplayError.observe(viewLifecycleOwner) { displayError ->
             if(displayError) {
                 Snackbar.make(binding.root, R.string.error_missing_review_fields, Snackbar.LENGTH_SHORT).show()

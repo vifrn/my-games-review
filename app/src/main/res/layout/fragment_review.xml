@@ -29,7 +29,7 @@
             android:layout_marginEnd="8dp"
             android:gravity="start|top"
             android:hint="@string/review_type_your_review_hint"
-            android:text="@={game.myReview}"
+            android:text="@={viewModel.review}"
             android:textAlignment="viewStart"
             app:layout_constraintBottom_toTopOf="@id/review_row"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
 
         <TextView
             android:id="@+id/rating"
-            rating='@{game.myRating}'
+            rating='@{viewModel.shakeAmount}'
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -77,11 +77,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/review_add_rating_button_label"
+            android:text="@{viewModel.buttonText}"
+            android:onClick="@{() -> viewModel.toggleCapturingShake()}"
             app:layout_constraintBottom_toTopOf="@+id/save_review_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rating" />
+            app:layout_constraintTop_toBottomOf="@+id/rating"
+            tools:text="@string/review_add_rating_button_label"/>
 
         <Button
             android:id="@+id/save_review_button"
