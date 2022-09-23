@@ -22,3 +22,131 @@ Milestones:
 11. Use accelerometer to increase rating.
 12. Search bar implementation
 13. Add phone shaking animation with MotionLayout to give user a hint
+
+Android UI/UC Criterias:
+
+1. Build a navigable interface consisting of multiple screens of functionality and data.
+
+	1.a. Application includes at least three screens with distinct features using either the Android Navigation Controller or Explicit Intents.
+		There are 4 screens: Suggestions, Details, Review and My Reviews
+
+	1.b. The Navigation Controller is used for Fragment-based navigation and intents are utilized for Activity-based navigation.
+		Single activity app -> Navigation Controller is used for Fragment-based navigation.
+
+	1.c An application bundle is built to store data passed between Fragments and Activities.
+		Data is passed between fragments using SafeArgs
+
+2. Construct interfaces that adhere to Android standards and display appropriately on screens of different size and resolution.
+
+	2.a. Application UI effectively utilizes ConstraintLayout to arrange UI elements effectively and efficiently across application features, avoiding nesting layouts and maintaining a flat UI structure where possible.
+		ConstraintLayout is used on every layout. I avoided using nested layout groups.
+
+	2.b. Data collections are displayed effectively, taking advantage of visual hierarchy and arrangement to display data in an easily consumable format.
+		Yes
+
+	2.c. Resources are stored appropriately using the internal res directory to store data in appropriate locations including string* values, drawables, colors, dimensions, and more.
+		Yes
+
+	2.d. Every element within ConstraintLayout should include the id field and at least 1 vertical constraint.
+		Yes
+
+	2.e. Data collections should be loaded into the application using ViewHolder pattern and appropriate View, such as RecyclerView.
+		Yes. Please check GameListAdapter.kt file
+
+3.Animate UI components to better utilize screen real estate and create engaging content.
+
+	3.a. Application contains at least 1 feature utilizing MotionLayout to adapt UI elements to a given function. This could include animating control elements onto and off screen, displaying and hiding a form, or animation of complex UI transitions.
+		MotionLayout is implemented on Review screen. It's used to give user a hint on what to do to increase the rating points.
+
+	3.b. MotionLayout behaviors are defined in a MotionScene using one or more Transition nodes and ConstraintSet blocks.
+		Yes. Please check review_motion_scene.xml file
+
+	3.c. Constraints are defined within the scenes and house all layout params for the animation.
+		Yes. Please check review_motion_scene.xml file
+
+
+Local and Network data Criterias:
+
+1. Connect to and consume data from a remote data source such as a RESTful API.
+
+	1.a. The Application connects to at least 1 external data source using Retrofit or other appropriate library/component and retrieves data for use within the application.
+		It connetcts with 2 external data sources. The first is the Twitch auth service to get the token to use the second API, which is IGDB.
+
+	1.b. Data retrieved from the remote source is held in local models with appropriate data types that are readily handled and manipulated within the application source. Helper libraries such as Moshi may be used to assist with this requirement.
+		AuthResponse is handled with Moshi. For Game objects I had to parse the JSON manually.
+
+	1.c. The application performs work and handles network requests on the appropriate threads to avoid stalling the UI.
+		Yes. Every network request is made asynchronously
+
+2. Load network resources, such as Bitmap Images, dynamically and on-demand.
+
+	2.a. The Application loads remote resources asynchronously using an appropriate library such as Glide or other library/component when needed.
+		Picasso library is used for this.
+
+	2.b. Images display placeholder images while being loaded and handle failed network requests gracefully.
+		Yes
+
+	2.c. All requests are performed asynchronously and handled on the appropriate threads.
+		Yes
+
+3. Store data locally on the device for use between application sessions and/or offline use.
+
+	3.a. The application utilizes storage mechanisms that best fit the data stored to store data locally on the device. Example: SharedPreferences for user settings or an internal database for data persistence for application data. Libraries such as Room may be utilized to achieve this functionality.
+		Yes. Caching is implemented using Room.
+
+	3.b. Data stored is accessible across user sessions.
+		Yes
+
+	3.c. Data storage operations are performed on the appropriate threads as to not stall the UI thread.
+		Yes. Using suspend functions with Dispatchers.IO
+
+	3.d. Data is structured with appropriate data types and scope as required by application functionality.
+		Yes. Using Game model
+
+
+
+Android system and hardware integration Criterias:
+
+1. Architect application functionality using MVVM
+	1.a. Application separates responsibilities amongst classes and structures using the MVVM Pattern:
+
+		Fragments/Activities control the Views
+		Models houses the data structures,
+		ViewModel controls business logic.
+
+		Yes
+
+	1.b. Application adheres to architecture best practices, such as the observer pattern, to prevent leaking components, such as Activity Contexts, and efficiently utilize system resources.
+		Yes. Observer is widely used.
+
+
+2. Implement logic to handle and respond to hardware and system events that impact the Android Lifecycle.
+
+	2.a. Beyond MVVM, the application handles system events, such as orientation changes, application switching, notifications, and similar events gracefully including, but not limited to:
+
+		Storing and restoring state and information
+		Properly handling lifecycle events in regards to behavior and functionality
+		Implement bundles to restore and save data
+		Handling interaction to and from the application via Intents
+		Handling Android Permissions
+
+	Yes
+
+3. Utilize system hardware to provide the user with advanced functionality and features.
+
+	3.a Application utilizes at least 1 hardware component to provide meaningful functionality to the application as a whole. Suggestion options include:
+
+		Camera
+		Location
+		Accelerometer
+		Microphone
+		Gesture Capture
+		Notifications
+
+		Yes. App main feature is based on Accelerometer
+
+	3.b Permissions to access hardware features are requested at the time of use for the feature.
+
+	3.c Behaviors are accessed only after permissions are granted.
+
+		Accelerometer doesn't require user permission
