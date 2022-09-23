@@ -38,6 +38,19 @@ class ReviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.addRatingButton.setOnClickListener {
+            viewModel.toggleCapturingShake()
+
+            //MotionScene OnClick tag is not working in parallel with
+            //Button onClick attribute, so I had to animate manually here.
+            if (binding.motion.progress == 0.0f) {
+                binding.motion.transitionToEnd()
+            } else {
+                binding.motion.transitionToStart()
+            }
+
+        }
+
         viewModel.setBaseInfo(binding.game!!)
         viewModel.shouldDisplayError.observe(viewLifecycleOwner) { displayError ->
             if(displayError) {

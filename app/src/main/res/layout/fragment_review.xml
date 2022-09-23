@@ -15,9 +15,11 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layoutDescription="@xml/review_motion_scene"
         tools:context=".review.ReviewFragment">
 
         <EditText
@@ -53,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="64sp"
+            android:textSize="@dimen/review_rating_text_size"
             app:layout_constraintBottom_toTopOf="@+id/add_rating_button"
             app:layout_constraintEnd_toStartOf="@+id/middle_vert"
             app:layout_constraintHorizontal_bias="1.0"
@@ -63,8 +65,8 @@
 
         <ImageView
             android:id="@+id/star"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/review_star_size"
+            android:layout_height="@dimen/review_star_size"
             android:layout_marginStart="4dp"
             android:src="@drawable/ic_star"
             app:layout_constraintBottom_toTopOf="@+id/add_rating_button"
@@ -72,18 +74,29 @@
             app:layout_constraintTop_toBottomOf="@+id/my_rating"
             app:tint="@color/yellow_star" />
 
+        <ImageView
+            android:id="@+id/phone"
+            android:layout_width="@dimen/review_phone_size"
+            android:layout_height="@dimen/review_phone_size"
+            android:src="@drawable/ic_phone"
+            app:layout_constraintBottom_toTopOf="@+id/save_review_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_rating_button"
+            app:layout_constraintVertical_bias="0.3"
+            app:tint="@color/darker_gray" />
+
         <Button
             android:id="@+id/add_rating_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@{viewModel.buttonText}"
-            android:onClick="@{() -> viewModel.toggleCapturingShake()}"
             app:layout_constraintBottom_toTopOf="@+id/save_review_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rating"
-            tools:text="@string/review_add_rating_button_label"/>
+            tools:text="@string/review_add_rating_button_label" />
 
         <Button
             android:id="@+id/save_review_button"
@@ -91,8 +104,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/review_save_button_label"
             android:onClick="@{() -> viewModel.saveReview(game)}"
+            android:text="@string/review_save_button_label"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -112,5 +125,5 @@
             app:layout_constraintGuide_percent="0.3" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

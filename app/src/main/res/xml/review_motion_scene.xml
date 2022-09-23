@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MotionScene xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Transition
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/end"
+        app:duration="750">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                app:framePosition="5"
+                app:motionTarget="@id/phone"
+                android:alpha="1" />
+
+            <KeyAttribute
+                app:framePosition="10"
+                app:motionTarget="@id/phone"
+                android:translationY="0dp" />
+
+            <KeyAttribute
+                app:framePosition="20"
+                app:motionTarget="@id/phone"
+                android:rotation="-45" />
+
+            <KeyAttribute
+                app:framePosition="50"
+                app:motionTarget="@id/phone"
+                android:rotation="45" />
+
+            <KeyAttribute
+                app:framePosition="70"
+                app:motionTarget="@id/phone"
+                android:rotation="-45" />
+        </KeyFrameSet>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/phone"
+            android:layout_width="@dimen/review_phone_size"
+            android:layout_height="@dimen/review_phone_size"
+            android:alpha="0"
+            android:translationY="100dp"
+            android:rotation="0"
+            app:layout_constraintBottom_toTopOf="@+id/save_review_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_rating_button"
+            app:layout_constraintVertical_bias="0.3" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/phone"
+            android:layout_width="@dimen/review_phone_size"
+            android:layout_height="@dimen/review_phone_size"
+            android:alpha="1"
+            android:translationY="0dp"
+            android:rotation="0"
+            app:layout_constraintBottom_toTopOf="@+id/save_review_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_rating_button"
+            app:layout_constraintVertical_bias="0.3"/>
+
+    </ConstraintSet>
+</MotionScene>

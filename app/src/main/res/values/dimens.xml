@@ -6,4 +6,7 @@
 
     <dimen name="list_item_image_width">109dp</dimen>
     <dimen name="details_cover_size">250dp</dimen>
+    <dimen name="review_star_size">64dp</dimen>
+    <dimen name="review_rating_text_size">64sp</dimen>
+    <dimen name="review_phone_size">50dp</dimen>
 </resources>
