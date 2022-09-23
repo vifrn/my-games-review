@@ -35,9 +35,9 @@ class ReviewViewModel(application: Application) : AndroidViewModel(application) 
     }
     val review = MutableLiveData("")
 
-    fun setBaseInfo(game : Game) {
-        shakeDetector.setBaseAmount(game.myRating ?: 0f)
-        review.value = game.myReview
+    fun setBaseInfo(review : String, amount : Float) {
+        shakeDetector.setBaseAmount(amount ?: 0f)
+        this.review.value = review
     }
 
     fun saveReview (game : Game) {

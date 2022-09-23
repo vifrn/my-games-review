@@ -51,7 +51,7 @@ class ReviewFragment : Fragment() {
 
         }
 
-        viewModel.setBaseInfo(binding.game!!)
+        viewModel.setBaseInfo(binding.game?.myReview ?: "", binding.game?.myRating ?: 0.0f)
         viewModel.shouldDisplayError.observe(viewLifecycleOwner) { displayError ->
             if(displayError) {
                 Snackbar.make(binding.root, R.string.error_missing_review_fields, Snackbar.LENGTH_SHORT).show()
@@ -66,4 +66,20 @@ class ReviewFragment : Fragment() {
             }
         }
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(REVIEW_KEY, viewModel.review.value)
+        outState.putFloat(RATING_KEY, viewModel.shakeAmount.value?:0f)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        viewModel.setBaseInfo(
+            savedInstanceState?.getString(REVIEW_KEY) ?: "",
+            savedInstanceState?.getFloat(RATING_KEY) ?: 0f)
+    }
 }
+
+private const val REVIEW_KEY = "review_key"
+private const val RATING_KEY = "rating_key"
