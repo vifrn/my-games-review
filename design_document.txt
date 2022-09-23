@@ -1,0 +1,24 @@
+MyGamesReviews (Shaking Reviews)
+
+Description:
+This app allow users to review the games they've played. 
+The home screen will display a few suggestions and will also have a search box so user is able to find a specific game.
+Once the user search for the game, a list with possible results will be displayed, selecting one game from the list will open the details screen,
+showing the info of the game and a button to add a review.
+On review screen, user will be able write a review and give it a rating using the accelerometer (the more they shake the phone, higher the score).
+User can check their already added reviews using the drawer on the left.
+
+Milestones:
+1. Build app skelleton
+2. Connect to the IGDB API
+3. Parse  Game objects
+4. Implement DB to store reviews + offline caching
+5. Display game list on the Recycler view
+6. Download and display images using Picasso
+7. Navigation implementation
+8. Details screen implementation
+9. My Reviews screen implementation
+10. Add a review screen basic implementation
+11. Use accelerometer to increase rating.
+12. Search bar implementation
+13. Add phone shaking animation with MotionLayout to give user a hint
