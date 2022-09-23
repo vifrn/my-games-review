@@ -11,9 +11,10 @@ fun bindGameImage(imageView: ImageView, url : String?) {
         Picasso.get()
             .load(url)
             .placeholder(R.drawable.placeholder)
+            .error(R.drawable.error_image_not_found)
             .into(imageView)
     } else {
-        imageView.setImageResource(R.drawable.placeholder)
+        imageView.setImageResource(R.drawable.error_image_not_found)
     }
 }
 

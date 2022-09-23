@@ -96,7 +96,7 @@ class SuggestionsFragment : Fragment() {
             binding.searchButton.setBackgroundColor(requireContext().getColor(R.color.red_search_cancel))
             binding.searchButton.setImageResource(R.drawable.ic_close)
         } else {
-            binding.searchButton.setBackgroundColor(requireContext().getColor(R.color.dark_gray))
+            binding.searchButton.setBackgroundColor(requireContext().getColor(R.color.search_button_background_color))
             binding.searchButton.setImageResource(R.drawable.ic_search)
         }
 

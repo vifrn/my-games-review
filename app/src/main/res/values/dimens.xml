@@ -9,4 +9,6 @@
     <dimen name="review_star_size">64dp</dimen>
     <dimen name="review_rating_text_size">64sp</dimen>
     <dimen name="review_phone_size">50dp</dimen>
+    <dimen name="game_list_title_text_size">20sp</dimen>
+    <dimen name="game_list_summary_text_size">16sp</dimen>
 </resources>

@@ -8,9 +8,9 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_gray">#EEEEEE</color>
-    <color name="dark_gray">#999999</color>
-    <color name="darker_gray">#666666</color>
+    <color name="search_bar_background_color">#EEEEEE</color>
+    <color name="search_button_background_color">#999999</color>
+    <color name="review_phone_tint">#666666</color>
     <color name="yellow_star">#FF9900</color>
     <color name="red_search_cancel">#EE0000</color>
 </resources>
